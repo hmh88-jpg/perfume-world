@@ -3,16 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <title>قائمة العطور</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <div class="container">
-  <h2>📋 قائمة العطور</h2>
-  <div id="list"></div>
-  <a href="index.html" class="btn">⬅️ الرئيسية</a>
+  <h1>🌸 قائمة العطور</h1>
+
+  <div id="perfumeList" class="cards"></div>
+
+  <br>
+  <a href="index.html" class="btn">⬅️ الرجوع للرئيسية</a>
 </div>
 
-<script src="js/list.js"></script>
+<script>
+async function loadPerfumes() {
+  const res = await fetch("/api/perfumes");
+  const perfumes = await res.json();
+
+  const list = document.getElementById("perfumeList");
+  list.innerHTML = "";
+
+  perfumes.forEach(p => {
+    list.innerHTML += `
+      <div class="card">
+        <img src="${p.image || 'assets/default.jpg'}">
+        <h3>${p.name}</h3>
+        <p><strong>السعر:</strong> ${p.price}</p>
+        <p><strong>التقييم:</strong> ${p.rating}</p>
+        <p>${p.description}</p>
+      </div>
+    `;
+  });
+}
+
+loadPerfumes();
+</script>
+
 </body>
 </html>
