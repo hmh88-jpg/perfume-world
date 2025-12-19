@@ -1,12 +1,29 @@
-const id = new URLSearchParams(window.location.search).get("id");
+const API = "/api/perfumes";
 
-fetch(`http://localhost:3000/api/perfumes/${id}`)
-.then(res => res.json())
-.then(p => {
+async function loadDetails() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  if (!id) {
+    document.getElementById("details").innerHTML =
+      "<p>لم يتم تحديد عطر</p>";
+    return;
+  }
+
+  const res = await fetch(API + "/" + id);
+  const p = await res.json();
+
   document.getElementById("details").innerHTML = `
-    <h2>${p.name}</h2>
-    <img src="${p.image}" width="200">
-    <p>${p.description}</p>
-    <p>⭐ ${p.rating}</p>
+    <div class="card">
+      <img src="${p.image}" alt="${p.name}">
+      <h2>${p.name}</h2>
+      <div class="price">${p.price} ريال</div>
+      <div class="rating">⭐ ${p.rating}</div>
+      <p>${p.description}</p>
+      <a class="back" href="list.html">⬅ الرجوع للقائمة</a>
+    </div>
   `;
-});
+}
+
+document.addEventListener("DOMContentLoaded", loadDetails);
+
