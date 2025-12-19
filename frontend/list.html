@@ -1,34 +1,9 @@
 <div class="container">
   <h1>🌸 قائمة العطور</h1>
-
-  <div id="perfumeList"></div>
-
-  <a href="index.html" class="btn secondary">⬅️ الرجوع للرئيسية</a>
+  <div id="perfumeList" class="cards"></div>
 </div>
 
-<script>
-async function loadPerfumes() {
-  const res = await fetch("/api/perfumes");
-  const perfumes = await res.json();
 
-  perfumeList.innerHTML = "";
-
-  perfumes.forEach(p => {
-    perfumeList.innerHTML += `
-      <div class="card">
-        <img src="${p.image || 'assets/default.jpg'}">
-        <h3>${p.name}</h3>
-        <p><strong>السعر:</strong> ${p.price} ريال</p>
-        <p><strong>التقييم:</strong> ${p.rating}</p>
-        <p>${p.description}</p>
-        <a href="details.html?id=${p._id}" class="btn">عرض التفاصيل</a>
-      </div>
-    `;
-  });
-}
-
-loadPerfumes();
-</script>
 
 
 
