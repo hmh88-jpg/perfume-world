@@ -3,39 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>قائمة العطور</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="/frontend/assets/style.css">
 </head>
 <body>
 
 <div class="container">
   <h1>📋 قائمة العطور</h1>
 
-  <div id="list"></div>
+  <div id="perfumes"></div>
 
-  <a href="index.html" class="btn secondary">الرجوع للرئيسية</a>
+  <a class="back" href="index.html">⬅ الرجوع للرئيسية</a>
 </div>
 
-<script>
-fetch("/api/perfumes")
-.then(res => res.json())
-.then(data => {
-  const list = document.getElementById("list");
-  data.forEach(p => {
-    list.innerHTML += `
-      <div class="card">
-        <img src="${p.image}">
-        <h3>${p.name}</h3>
-        <p>السعر: ${p.price} ريال</p>
-        <p>التقييم: ${p.rating}</p>
-        <a href="details.html?id=${p._id}" class="btn">التفاصيل</a>
-      </div>
-    `;
-  });
-});
-</script>
-
+<script src="/frontend/js/main.js"></script>
 </body>
 </html>
+
+
 
 
 
