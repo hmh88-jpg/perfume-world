@@ -1,19 +1,31 @@
-document.getElementById("perfumeForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
+const API = "/api/perfumes";
 
-  const perfume = {
-    name: document.getElementById("name").value,
-    price: document.getElementById("price").value,
-    image: document.getElementById("image").value,
-    rating: document.getElementById("rating").value,
-    description: document.getElementById("description").value
-  };
+async function addPerfume() {
+  const name = document.getElementById("name").value;
+  const price = document.getElementById("price").value;
+  const image = document.getElementById("image").value;
+  const rating = document.getElementById("rating").value;
+  const description = document.getElementById("description").value;
 
-  await fetch("http://localhost:3000/api/perfumes", {
+  if (!name || !price || !image || !rating || !description) {
+    alert("الرجاء تعبئة جميع الحقول");
+    return;
+  }
+
+  await fetch(API, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(perfume)
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name,
+      price,
+      image,
+      rating,
+      description
+    })
   });
 
   window.location.href = "list.html";
-});
+}
+
