@@ -2,37 +2,37 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>إضافة عطر جديد</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>إضافة عطر</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-  <div class="container">
-    <h1>➕ إضافة عطر جديد</h1>
+<div class="container">
+  <h1>➕ إضافة عطر جديد</h1>
 
-    <form id="addPerfumeForm" class="form">
-      <input type="text" id="name" placeholder="اسم العطر" required>
-      <input type="number" id="price" placeholder="السعر" required>
-      <input type="text" id="image" placeholder="رابط صورة العطر" required>
+  <form id="addForm">
+    <input type="text" placeholder="اسم العطر" required>
+    <input type="number" placeholder="السعر" required>
+    <input type="text" placeholder="رابط صورة العطر" required>
 
-      <select id="rating" required>
-        <option value="">اختر التقييم</option>
-        <option value="ممتاز">ممتاز</option>
-        <option value="جيد">جيد</option>
-        <option value="سيء">سيء</option>
-      </select>
+    <select required>
+      <option value="">اختر التقييم</option>
+      <option>ممتاز</option>
+      <option>جيد</option>
+      <option>سيء</option>
+    </select>
 
-      <textarea id="description" placeholder="وصف العطر" rows="4" required></textarea>
+    <textarea rows="4" placeholder="وصف العطر" required></textarea>
 
-      <button type="submit">إضافة العطر</button>
-    </form>
+    <button>إضافة العطر</button>
+  </form>
 
-    <a href="index.html" class="back-link">⬅ الرجوع للرئيسية</a>
-  </div>
+  <a href="index.html" class="btn secondary">الرجوع للرئيسية</a>
+</div>
 
-  <script src="js/add.js"></script>
 </body>
 </html>
+
 
 
 
