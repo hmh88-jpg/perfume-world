@@ -1,27 +1,25 @@
-const API = "/api/perfumes";
+const API = "https://perfume-world.onrender.com/api/perfumes";
+const list = document.getElementById("perfumeList");
 
-async function loadPerfumes() {
-  const container = document.getElementById("perfumes");
+fetch(API)
+  .then(res => res.json())
+  .then(data => {
+    if (data.length === 0) {
+      list.innerHTML = "<p>لا توجد عطور مضافة</p>";
+      return;
+    }
 
-  const res = await fetch(API);
-  const perfumes = await res.json();
+    data.forEach(p => {
+      list.innerHTML += `
+        <div class="card">
+          <img src="${p.image}">
+          <h3>${p.name}</h3>
+          <p>السعر: ${p.price} ريال</p>
+          <a href="details.html?id=${p._id}" class="btn">عرض التفاصيل</a>
+        </div>
+      `;
+    });
+  });
 
-  if (perfumes.length === 0) {
-    container.innerHTML = "<p style='text-align:center'>لا توجد عطور مضافة</p>";
-    return;
-  }
-
-  container.innerHTML = perfumes.map(p => `
-    <div class="card">
-      <img src="${p.image}" alt="${p.name}">
-      <h3>${p.name}</h3>
-      <div class="price">${p.price} ريال</div>
-      <div class="rating">⭐ ${p.rating}</div>
-      <a href="details.html?id=${p._id}">عرض التفاصيل</a>
-    </div>
-  `).join("");
-}
-
-document.addEventListener("DOMContentLoaded", loadPerfumes);
 
 
