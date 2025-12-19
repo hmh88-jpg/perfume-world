@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8">
-  <title>قائمة العطور</title>
-  <link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
-
 <div class="container">
   <h1>🌸 قائمة العطور</h1>
 
-  <div id="perfumeList" class="cards"></div>
+  <div id="perfumeList"></div>
 
   <a href="index.html" class="btn secondary">⬅️ الرجوع للرئيسية</a>
 </div>
@@ -24,19 +15,20 @@ async function loadPerfumes() {
 
   perfumes.forEach(p => {
     perfumeList.innerHTML += `
-      <h3>${p.name}</h3>
-<p class="price">${p.price} ريال</p>
-<p class="rating">⭐ ${p.rating}</p>
-
+      <div class="card">
+        <img src="${p.image || 'assets/default.jpg'}">
+        <h3>${p.name}</h3>
+        <p><strong>السعر:</strong> ${p.price} ريال</p>
+        <p><strong>التقييم:</strong> ${p.rating}</p>
+        <p>${p.description}</p>
+        <a href="details.html?id=${p._id}" class="btn">عرض التفاصيل</a>
+      </div>
     `;
   });
 }
 
 loadPerfumes();
 </script>
-
-</body>
-</html>
 
 
 
