@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8">
-  <title>تفاصيل العطر</title>
-  <link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
-
 <div class="container">
   <div id="details"></div>
   <a href="list.html" class="btn secondary">⬅️ الرجوع للقائمة</a>
 </div>
 
 <script>
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
+const id = new URLSearchParams(window.location.search).get("id");
 
 async function loadDetails() {
   const res = await fetch("/api/perfumes/" + id);
@@ -23,15 +13,13 @@ async function loadDetails() {
   details.innerHTML = `
     <img src="${p.image}" class="detail-img">
     <h1>${p.name}</h1>
-    <p class="price">${p.price} ريال</p>
-    <p class="rating">⭐ ${p.rating}</p>
-    <p class="desc">${p.description}</p>
+    <p><strong>السعر:</strong> ${p.price} ريال</p>
+    <p><strong>التقييم:</strong> ${p.rating}</p>
+    <p>${p.description}</p>
   `;
 }
 
 loadDetails();
 </script>
 
-</body>
-</html>
 
