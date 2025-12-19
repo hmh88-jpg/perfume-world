@@ -3,35 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>إضافة عطر</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="/frontend/assets/style.css">
 </head>
 <body>
 
 <div class="container">
   <h1>➕ إضافة عطر جديد</h1>
 
-  <form id="addForm">
-    <input type="text" placeholder="اسم العطر" required>
-    <input type="number" placeholder="السعر" required>
-    <input type="text" placeholder="رابط صورة العطر" required>
+  <input id="name" placeholder="اسم العطر">
+  <input id="price" placeholder="السعر">
+  <input id="image" placeholder="رابط صورة العطر">
 
-    <select required>
-      <option value="">اختر التقييم</option>
-      <option>ممتاز</option>
-      <option>جيد</option>
-      <option>سيء</option>
-    </select>
+  <select id="rating">
+    <option value="">اختر التقييم</option>
+    <option>ممتاز</option>
+    <option>جيد</option>
+    <option>سيء</option>
+  </select>
 
-    <textarea rows="4" placeholder="وصف العطر" required></textarea>
+  <textarea id="description" placeholder="وصف العطر"></textarea>
 
-    <button>إضافة العطر</button>
-  </form>
+  <button onclick="addPerfume()">إضافة العطر</button>
 
-  <a href="index.html" class="btn secondary">الرجوع للرئيسية</a>
+  <a class="back" href="index.html">⬅ الرجوع للرئيسية</a>
 </div>
 
+<script src="/frontend/js/main.js"></script>
 </body>
 </html>
+
+
 
 
 
