@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>إضافة عطر</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>➕ إضافة عطر جديد</h2>
+
+  <form id="perfumeForm">
+
+    <input type="text" id="name" placeholder="اسم العطر" required>
+
+    <input type="number" id="price" placeholder="السعر (ريال)" required>
+
+    <input type="text" id="image" placeholder="رابط صورة العطر" required>
+
+    <select id="rating" required>
+      <option value="">اختر التقييم</option>
+      <option>ممتاز</option>
+      <option>جيد</option>
+      <option>سيء</option>
+    </select>
+
+    <textarea id="description" rows="4" placeholder="وصف العطر" required></textarea>
+
+    <button type="submit">إضافة العطر</button>
+  </form>
+
+  <br>
+  <a href="index.html" class="btn">⬅️ رجوع للرئيسية</a>
+</div>
+
+<script src="js/add.js"></script>
+</body>
+</html>
