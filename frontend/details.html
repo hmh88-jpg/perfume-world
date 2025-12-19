@@ -1,25 +1,7 @@
 <div class="container">
-  <div id="details"></div>
-  <a href="list.html" class="btn secondary">⬅️ الرجوع للقائمة</a>
+  <img id="image" style="width:100%; border-radius:12px;">
+  <h2 id="name"></h2>
+  <p id="price"></p>
+  <p id="rating"></p>
+  <p id="description"></p>
 </div>
-
-<script>
-const id = new URLSearchParams(window.location.search).get("id");
-
-async function loadDetails() {
-  const res = await fetch("/api/perfumes/" + id);
-  const p = await res.json();
-
-  details.innerHTML = `
-    <img src="${p.image}" class="detail-img">
-    <h1>${p.name}</h1>
-    <p><strong>السعر:</strong> ${p.price} ريال</p>
-    <p><strong>التقييم:</strong> ${p.rating}</p>
-    <p>${p.description}</p>
-  `;
-}
-
-loadDetails();
-</script>
-
-
