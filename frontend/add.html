@@ -1,39 +1,49 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8">
-  <title>إضافة عطر</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<form id="perfumeForm">
+  <input type="text" id="name" placeholder="اسم العطر" required><br><br>
 
-<div class="container">
-  <h2>➕ إضافة عطر جديد</h2>
+  <input type="number" id="price" placeholder="السعر" required><br><br>
 
-  <form id="perfumeForm">
+  <input type="text" id="image" placeholder="رابط صورة العطر"><br><br>
 
-    <input type="text" id="name" placeholder="اسم العطر" required>
+  <select id="rating" required>
+    <option value="">اختر التقييم</option>
+    <option value="ممتاز">ممتاز</option>
+    <option value="جيد">جيد</option>
+    <option value="سيء">سيء</option>
+  </select><br><br>
 
-    <input type="number" id="price" placeholder="السعر (ريال)" required>
+  <textarea id="description" placeholder="وصف العطر" required></textarea><br><br>
 
-    <input type="text" id="image" placeholder="رابط صورة العطر" required>
+  <button type="submit">إضافة العطر</button>
+</form>
 
-    <select id="rating" required>
-      <option value="">اختر التقييم</option>
-      <option>ممتاز</option>
-      <option>جيد</option>
-      <option>سيء</option>
-    </select>
+<p id="msg"></p>
+<a href="index.html">⬅️ رجوع للرئيسية</a>
 
-    <textarea id="description" rows="4" placeholder="وصف العطر" required></textarea>
+<script>
+document.getElementById("perfumeForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
 
-    <button type="submit">إضافة العطر</button>
-  </form>
+  const perfume = {
+    name: document.getElementById("name").value,
+    price: document.getElementById("price").value,
+    image: document.getElementById("image").value,
+    rating: document.getElementById("rating").value,
+    description: document.getElementById("description").value
+  };
 
-  <br>
-  <a href="index.html" class="btn">⬅️ رجوع للرئيسية</a>
-</div>
+  const res = await fetch("/api/perfumes", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(perfume)
+  });
 
-<script src="js/add.js"></script>
-</body>
-</html>
+  if (res.ok) {
+    document.getElementById("msg").innerText = "✅ تم إضافة العطر بنجاح";
+    document.getElementById("perfumeForm").reset();
+  } else {
+    document.getElementById("msg").innerText = "❌ حصل خطأ";
+  }
+});
+</script>
+
