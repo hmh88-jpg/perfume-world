@@ -1,16 +1,20 @@
-fetch("http://localhost:3000/api/perfumes")
+const API_URL = "https://perfume-world.onrender.com/api/perfumes";
+
+fetch(API_URL)
   .then(res => res.json())
   .then(data => {
-    const list = document.getElementById("list");
-    list.innerHTML = ""; // مهم
+    const container = document.getElementById("perfumeList");
+    container.innerHTML = "";
 
-    data.forEach(p => {
-      list.innerHTML += `
+    data.forEach(perfume => {
+      container.innerHTML += `
         <div class="card">
-          <h3>${p.name}</h3>
-          <p>السعر: ${p.price} ريال</p>
-          <a href="details.html?id=${p._id}">عرض التفاصيل</a>
+          <img src="${perfume.image}">
+          <h3>${perfume.name}</h3>
+          <p>السعر: ${perfume.price} ريال</p>
+          <a href="details.html?id=${perfume._id}">عرض التفاصيل</a>
         </div>
       `;
     });
   });
+
