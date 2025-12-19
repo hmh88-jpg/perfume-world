@@ -1,31 +1,24 @@
-const API = "/api/perfumes";
+const API = "https://perfume-world.onrender.com/api/perfumes";
 
-async function addPerfume() {
-  const name = document.getElementById("name").value;
-  const price = document.getElementById("price").value;
-  const image = document.getElementById("image").value;
-  const rating = document.getElementById("rating").value;
-  const description = document.getElementById("description").value;
+document.getElementById("addForm").addEventListener("submit", e => {
+  e.preventDefault();
 
-  if (!name || !price || !image || !rating || !description) {
-    alert("الرجاء تعبئة جميع الحقول");
-    return;
-  }
+  const data = {
+    name: name.value,
+    price: price.value,
+    image: image.value,
+    rating: rating.value,
+    description: description.value
+  };
 
-  await fetch(API, {
+  fetch(API, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name,
-      price,
-      image,
-      rating,
-      description
-    })
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  }).then(() => {
+    alert("تمت إضافة العطر بنجاح");
+    window.location.href = "list.html";
   });
+});
 
-  window.location.href = "list.html";
-}
 
