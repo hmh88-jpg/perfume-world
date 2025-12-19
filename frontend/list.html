@@ -12,8 +12,7 @@
 
   <div id="perfumeList" class="cards"></div>
 
-  <br>
-  <a href="index.html" class="btn">⬅️ الرجوع للرئيسية</a>
+  <a href="index.html" class="btn secondary">⬅️ الرجوع للرئيسية</a>
 </div>
 
 <script>
@@ -21,17 +20,16 @@ async function loadPerfumes() {
   const res = await fetch("/api/perfumes");
   const perfumes = await res.json();
 
-  const list = document.getElementById("perfumeList");
-  list.innerHTML = "";
+  perfumeList.innerHTML = "";
 
   perfumes.forEach(p => {
-    list.innerHTML += `
+    perfumeList.innerHTML += `
       <div class="card">
         <img src="${p.image || 'assets/default.jpg'}">
         <h3>${p.name}</h3>
-        <p><strong>السعر:</strong> ${p.price}</p>
-        <p><strong>التقييم:</strong> ${p.rating}</p>
-        <p>${p.description}</p>
+        <p class="price">${p.price} ريال</p>
+        <p class="rating">⭐ ${p.rating}</p>
+        <a href="details.html?id=${p._id}" class="btn small">عرض التفاصيل</a>
       </div>
     `;
   });
@@ -42,3 +40,5 @@ loadPerfumes();
 
 </body>
 </html>
+
+
