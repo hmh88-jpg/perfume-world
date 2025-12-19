@@ -24,13 +24,10 @@ async function loadPerfumes() {
 
   perfumes.forEach(p => {
     perfumeList.innerHTML += `
-      <div class="card">
-        <img src="${p.image || 'assets/default.jpg'}">
-        <h3>${p.name}</h3>
-        <p class="price">${p.price} ريال</p>
-        <p class="rating">⭐ ${p.rating}</p>
-        <a href="details.html?id=${p._id}" class="btn small">عرض التفاصيل</a>
-      </div>
+      <h3>${p.name}</h3>
+<p class="price">${p.price} ريال</p>
+<p class="rating">⭐ ${p.rating}</p>
+
     `;
   });
 }
@@ -40,5 +37,6 @@ loadPerfumes();
 
 </body>
 </html>
+
 
 
